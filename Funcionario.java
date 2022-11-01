@@ -17,7 +17,7 @@ public class Funcionario extends Cliente{
     }
     public void setSalario(double salario) {
         this.salario = salario;
-    }
+    }   
     public String getCargo() {
         return cargo;
     }
