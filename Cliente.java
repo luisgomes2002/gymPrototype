@@ -57,7 +57,7 @@ public class Cliente {
         return cpf;
     }
     public void setCpf(int cpf){
-            this.cpf = cpf;
+        this.cpf = cpf;
     }
     
     public String toString(){

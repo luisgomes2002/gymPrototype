@@ -11,7 +11,7 @@ public class Principal{
         int menu;
         do{
             menu = Integer.parseInt(JOptionPane.showInputDialog(null, "[1] CASTRAR CLIENTES\n" +
-            "[2] CADASTRAR FUNCIONARIOS\n" + "[3] FAZER LISTA DE TREINOS\n" +"[4] MOSTRAR LISTA DE CLIENTES\n" + "[5] MOSTRAR LISTA DE FUNCIONARIOS\n"+"[6] APAGAR CLIENTES\n" + "[7] SAIR"));
+            "[2] CADASTRAR FUNCIONARIOS\n" + "[3] FAZER LISTA DE TREINOS\n" +"[4] MOSTRAR LISTA DE CLIENTES\n" + "[5] MOSTRAR LISTA DE FUNCIONARIOS\n"+"[6] APAGAR CLIENTES\n"+"[7] MOSTRAR UM UNICO CLIENTE\n" + "[8] SAIR"));
             switch(menu){
                 case 1://INSERIR OS DADOS DOS CLIENTES
                     Cliente cliente = new Cliente();
@@ -45,26 +45,22 @@ public class Principal{
                     DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/uuuu");
                     String dataFormatada = formatterData.format(agora);
                     DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm:ss");
-                    String horaFormatada = formatterHora.format(agora);
-                    System.out.println(horaFormatada);
-                    System.out.println(dataFormatada);
-
+                    String horaFormatada = formatterHora.format(agora);                   
 
                     int num = 1;
-                    for(Cliente i: cadastro){//MOSTRAR DADOS DOS CLIENTES
-                        System.out.println("Cliente: "+(num)+"\n"+i+"\n");
+                    for(Cliente c: cadastro){//MOSTRAR DADOS DOS CLIENTES
+                        System.out.println("Cliente: "+(num)+"\n"+c+"\n");
+                        System.out.println("Cliente "+(num)+ "\n" + (cadastrot.get(num-1)));
+                        System.out.println(horaFormatada);
+                        System.out.println(dataFormatada+"\n"+"\n"); 
                         num++;
                     }
-                    int num3 = 1;
-                    for(Treino i: cadastrot){//MOSTRAR O TREINO CLIENTES
-                        System.out.println("Numero do treino do cliente: "+(num3)+"\n"+i+"\n");
-                        num3++;//TEM MUITA INFORMACAO REVISAR
-                    }
+                              
                 break;
                 case 5:
                     int num2 = 1;
-                    for(Funcionario i: cadastrof){//MOSTRAR DADOS DOS FUNCIONARIOS
-                        System.out.println("Cliente: "+(num2)+"\n"+i+"\n");
+                    for(Funcionario f: cadastrof){//MOSTRAR DADOS DOS FUNCIONARIOS
+                        System.out.println("Cliente: "+(num2)+"\n"+f+"\n");
                         num2++;
                     } 
                 break;
@@ -90,10 +86,16 @@ public class Principal{
                         }                     
                     }while(menu2 != 4);
                 break;
+                case 7://escolher um cliente especifico                                      
+                        int esc;
+                        esc = Integer.parseInt(JOptionPane.showInputDialog( "Escolha um cliente para imprimir"));
+                        System.out.println("Cliente "+(esc)+ "\n" + (cadastro.get(esc-1)));
+                        System.out.println("Cliente "+(esc)+ "\n" + (cadastrot.get(esc-1)));                    
+                break;
                 default:
                 break;
             }
-        }while(menu != 7);
+        }while(menu != 8);
         {
             JOptionPane.showMessageDialog(null, "Saindo do Programa...");
         }

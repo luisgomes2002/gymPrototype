@@ -17,6 +17,6 @@ public class Treino extends Cliente {
     }
 
     public String toString(){
-        return super.toString()+ "\nNumero do treino: "+this.numDoTreino;
+        return "\nNumero do treino: "+this.numDoTreino;
     }
 }
