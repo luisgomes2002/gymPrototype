@@ -35,11 +35,7 @@ public class Cliente {
         return idade;
     }
     public void setIdade(int idade) {
-        if(idade>18){
-            this.idade = idade;
-        }else{
-            System.out.println("Menor de idade");
-        }
+        this.idade = idade;
     }
     public String getEmail() {
         return email;

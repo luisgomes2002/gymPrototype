@@ -1,22 +1,22 @@
 public class Treino extends Cliente {
-    private int numDoTreino;
+    private String treinos;
     
-    public Treino(String nome, int numDoTreino){
+    public Treino(String nome, String treinos){
         super();
-        this.numDoTreino = numDoTreino;
+        this.treinos = treinos;
     }
     public Treino(){
 
     }
 
-    public int getNumDoTreino() {
-        return numDoTreino;
+    public String getTreinos() {
+        return treinos;
     }
-    public void setNumDoTreino(int numDoTreino) {
-        this.numDoTreino = numDoTreino;
+    public void setTreinos(String treinos) {
+        this.treinos = treinos;
     }
 
     public String toString(){
-        return "\nNumero do treino: "+this.numDoTreino;
+        return "\nTreino: "+this.treinos;
     }
 }
