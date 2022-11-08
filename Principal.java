@@ -9,8 +9,10 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Principal{
-    public static void main(String[] args) {
+public class Principal
+{
+    public static void main(String[] args)
+    {
         System.out.println("Bem Vindo ao sistema da academia");
         JOptionPane.showMessageDialog(null, "Bem Vindo ao sistema da academia");
         //nao entendi nada de SQL pqp
@@ -20,7 +22,8 @@ public class Principal{
         ResultSet result; //holds the output from the SQL
         String SQL = "select * from author order by authorlast";//mudar
         
-        try{
+        try
+        {
             Class.forName("com.mysql.jdbc.Driver");
             String dbURL = "jdbc:mysql://localhost:3306/academia";
             Connection dbConnect = DriverManager.getConnection(dbURL, "root", "");
@@ -35,11 +38,14 @@ public class Principal{
             sqlSt.close();
         }
         
-        catch(ClassNotFoundException ex){
+        catch(ClassNotFoundException ex)
+        {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Class not found, check the JAR");
         }
-        catch(SQLException ex){
+        
+        catch(SQLException ex)
+        {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("SQL IS BAD!!" + ex.getMessage());
         }
@@ -47,12 +53,16 @@ public class Principal{
         ArrayList<Cliente> cadastro = new ArrayList<>();
         ArrayList<Funcionario> cadastrof = new ArrayList<>();
         ArrayList<Treino> cadastrot = new ArrayList<>();
+        
         int menu;
-        do{
+        do
+        {
             menu = Integer.parseInt(JOptionPane.showInputDialog(null, "[1] CASTRAR CLIENTES\n" +
             "[2] CADASTRAR FUNCIONARIOS\n" + "[3] FAZER LISTA DE TREINOS\n" +"[4] MOSTRAR LISTA DE CLIENTES\n" + "[5] MOSTRAR LISTA DE FUNCIONARIOS\n"+"[6] EXCLUIR CADASTROS\n"+"[7] MOSTRAR UM UNICO CLIENTE OU FUNCIONARIO\n" + "[8] SAIR"));
-            switch(menu){
+            switch(menu)
+            {
                 case 1://INSERIR OS DADOS DOS CLIENTES
+                	
                     Cliente cliente = new Cliente();
                     cliente.setNome(JOptionPane.showInputDialog(null, "Digite o nome: "));
                     cliente.setTel(Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o telefone: ")));
@@ -60,9 +70,11 @@ public class Principal{
                     cliente.setEmail(JOptionPane.showInputDialog(null, "Digite o email: "));
                     cliente.setEndereco(JOptionPane.showInputDialog(null, "Digite o endereco: "));
                     cliente.setCpf(Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o CPF")));
-                    cadastro.add(cliente);
+                    
+                    cadastro.add(cliente);                    
                 break;
                 case 2://INSERIR OS DADOS DOS FUNCIONARIOS
+                	
                     Funcionario funcionario = new Funcionario();
                     funcionario.setNome(JOptionPane.showInputDialog(null, "Digite o nome: "));
                     funcionario.setTel(Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o telefone: ")));
@@ -72,9 +84,11 @@ public class Principal{
                     funcionario.setCpf(Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o CPF")));
                     funcionario.setSalario(Double.parseDouble(JOptionPane.showInputDialog(null, "Digite o Salario: ")));
                     funcionario.setCargo(JOptionPane.showInputDialog(null, "Digite o Cargo: "));
-                    cadastrof.add(funcionario);                    
+                    
+                    cadastrof.add(funcionario);             
                 break;
-                case 3:     
+                case 3:   
+                	
                     System.out.println("Treino A\n\n" +
                     "Agachamento 5 X 8-10 reps / Intervalo 45s a 1min\n" +
                     "Leg Press 4 X 8-10 reps / Intervalo 45s a 1min\n" +
@@ -105,6 +119,7 @@ public class Principal{
                     cadastrot.add(treino);
                 break;
                 case 4:
+                	
                     LocalDateTime agora = LocalDateTime.now();
                     DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/uuuu");
                     String dataFormatada = formatterData.format(agora);
@@ -112,7 +127,8 @@ public class Principal{
                     String horaFormatada = formatterHora.format(agora);                   
 
                     int num = 1;
-                    for(Cliente c: cadastro){//MOSTRAR DADOS DOS CLIENTES
+                    for(Cliente c: cadastro)
+                    {//MOSTRAR DADOS DOS CLIENTES
                         System.out.println("Cliente: "+(num)+"\n"+c+"\n");
                         System.out.println("Cliente "+(num)+ "\n" + (cadastrot.get(num-1)));
                         System.out.println(horaFormatada);
@@ -121,16 +137,19 @@ public class Principal{
                     }                            
                 break;
                 case 5:
+                	
                     int num2 = 1;
                     for(Funcionario f: cadastrof){//MOSTRAR DADOS DOS FUNCIONARIOS
                         System.out.println("Cliente: "+(num2)+"\n"+f+"\n");
-                        num2++;
+                        num2++;                        
                     } 
                 break;
                 case 6://REMOVER CLIENTE, FUNCIONARO, TREINO
                     int menu2 = Integer.parseInt(JOptionPane.showInputDialog(null, "[1] EXCLUIR UM CLIENTE\n" + "[2] EXCLUIR UM FUNCIONARIOS\n" + "[3] EXCLUIR UM TREINO\n" + "[4] SAIR"));
-                    do{
-                        switch(menu2){
+                    do
+                    {
+                        switch(menu2)
+                        {
                             case 1:
                                 int remv;
                                 remv = Integer.parseInt(JOptionPane.showInputDialog( "Escolha um cliente para remover"));
@@ -149,10 +168,11 @@ public class Principal{
                         }                     
                     }while(menu2 != 4);
                 break;
-                case 7://escolher um cliente e um funcionario especifico  
+                case 7://escolher um cliente e um funcionario especifico
                     int menu3 = Integer.parseInt(JOptionPane.showInputDialog(null, "[1] MOSTRAR UM UNICO CLIENTE\n" + "[2] MOSTRAR UM UNICO FUNCIONARIO\n"+"[3] SAIR"));
                     do{
-                        switch(menu3){
+                        switch(menu3)
+                        {
                             case 1:
                                 int esc;
                                 esc = Integer.parseInt(JOptionPane.showInputDialog( "Escolha um cliente para imprimir"));
