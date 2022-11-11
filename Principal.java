@@ -4,15 +4,61 @@ import java.time.format.DateTimeFormatter;
 //others
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+//JFram
+import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 //sql
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Principal
+public class Principal extends JFrame
 {
+    private static JLabel directionsLabel = new JLabel("Enter your name in the box");
+    private static JLabel outputLabel = new JLabel();
+    private static JTextField nameBox = new JTextField(25);
+    private static JButton nameButton = new JButton("Click me");
     public static void main(String[] args)
     {
+        Principal window = new Principal(); 
+        window.setSize(500,500);
+        window.setVisible(true);
+        window.setTitle("Gym Program");
+        
+        //window.setLayout(new FlowLayout());
+        window.setLayout(new GridLayout(3, 2));//rows, columns
+
+        window.getContentPane().setBackground(Color.DARK_GRAY);
+        nameBox.setForeground(Color.BLACK);
+
+        directionsLabel.setFont(new Font("Calibri", Font.ITALIC, 18));
+
+        window.getContentPane().add(directionsLabel);
+        window.getContentPane().add(nameBox);
+        //blank line
+        window.getContentPane().add(new JLabel());
+        window.getContentPane().add(new JLabel());
+        window.getContentPane().add(nameButton);
+        window.getContentPane().add(outputLabel);
+        
+        //add ba action listener
+        nameButton.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                buttonClick(e);//function that handles the event
+            }
+        });
+
+        window.pack();
+
+        //add Swing objects here
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //end of main
+
+
         System.out.println("Bem Vindo ao sistema da academia");
         JOptionPane.showMessageDialog(null, "Bem Vindo ao sistema da academia");
         //nao entendi nada de SQL pqp
@@ -34,7 +80,6 @@ public class Principal
                 output = result.getString("AuthorLast") + " " + result.getString("AuthorLast");
                 System.out.println(output);
             }
-
             sqlSt.close();
         }
         
@@ -57,7 +102,7 @@ public class Principal
         int menu;
         do
         {
-            menu = Integer.parseInt(JOptionPane.showInputDialog(null, "[1] CASTRAR CLIENTES\n" +
+            menu = Integer.parseInt(JOptionPane.showInputDialog(null, "[1] CADASTRAR CLIENTES\n" +
             "[2] CADASTRAR FUNCIONARIOS\n" + "[3] FAZER LISTA DE TREINOS\n" +"[4] MOSTRAR LISTA DE CLIENTES\n" + "[5] MOSTRAR LISTA DE FUNCIONARIOS\n"+"[6] EXCLUIR CADASTROS\n"+"[7] MOSTRAR UM UNICO CLIENTE OU FUNCIONARIO\n" + "[8] SAIR"));
             switch(menu)
             {
@@ -195,4 +240,19 @@ public class Principal
             JOptionPane.showMessageDialog(null, "Saindo do Programa...");
         }
     }
+
+    public static void buttonClick(ActionEvent e)
+    {
+        //put code in here to repond to the button
+        //JOptionPane.showMessageDialog(null, "Button Works!!", "Hi", JOptionPane.INFORMATION_MESSAGE);
+        /*
+         *  1. strip from the screen objects
+         *  2. do something with the data from the screen
+         *  3. output the something
+         */
+
+        String yourName = nameBox.getText();
+        String outputMessage = "Hello there " + yourName;
+        outputLabel.setText(outputMessage);
+    };
 }
